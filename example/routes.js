@@ -7,8 +7,39 @@ const Joi = Router.Joi
  */
 const router = Router()
 
-// Get /signup
-router.get('/signup', {
+// Get /user/:_id
+router.get('/user/:_id', {
+  meta: {
+    swagger: {
+      summary: 'Get User Info',
+      description: `Note: \nSensitive data can only be viewed by the \`corresponding user\` or \`Admin\`.`,
+      tags: ['users']
+    }
+  },
+  validate: {
+    path: Joi.object().keys({
+      _id: Joi.string().alphanum().max(24).description('User id').required()
+    }),
+    output: {
+      '200-299': {
+        body: Joi.object({
+          userId: Joi.string().description('User id')
+        }).options({
+          allowUnknown: true
+        }).description('User object')
+      }
+    }
+  },
+  handler: async ctx => {
+    console.log('getUser...')
+    ctx.body = {
+      userId: ctx.params._id
+    }
+  }
+})
+
+// POST /signup
+router.post('/signup', {
   meta: {
     swagger: {
       summary: 'User Signup',
@@ -32,40 +63,7 @@ router.get('/signup', {
   },
   handler: async ctx => {
     ctx.body = {
-      userId: 'signup'
-    }
-  }
-})
-
-// Get /user/:_id
-router.get('/user/:_id', {
-  meta: {
-    swagger: {
-      summary: 'Get User Info',
-      description: `Note: \nSensitive data can only be viewed by the \`corresponding user\` or \`Admin\`.`,
-      tags: ['users']
-    }
-  },
-  validate: {
-    path: Joi.object().keys({
-      _id: Joi.string().alphanum().max(24).description('User id').required()
-    }),
-    output: {
-      '200-299': {
-        body: Joi.object({
-          userId: Joi.string().description('User id'),
-          username: Joi.string().description('User name')
-        }).options({
-          allowUnknown: true
-        }).description('User object')
-      }
-    }
-  },
-  handler: async ctx => {
-    console.log('getUser...')
-    ctx.body = {
-      userId: ctx.params._id,
-      username: ctx.params._id
+      userId: ctx.body.username
     }
   }
 })
@@ -82,23 +80,25 @@ const spec = generator.generateSpec({
     description: 'API for creating and editing examples.',
     version: '1.1'
   },
-  basePath: '/api',
+  basePath: '/',
   tags: [{
     name: 'users',
     description: `A User represents a person who can login 
       and take actions subject to their granted permissions.`
   }],
+}, { 
+  defaultResponses: {} // Custom default responses if you don't like default 200
 })
 
 /**
- * return Swagger json
+ * Swagger JSON API
  */
 router.get('/_api.json', async ctx => {
   ctx.body = JSON.stringify(spec, null, '  ')
 })
 
 /**
- * return API html
+ * API documentation
  */
 router.get('/apiDocs', async ctx => {
   ctx.body = `

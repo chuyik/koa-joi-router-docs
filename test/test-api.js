@@ -1,14 +1,12 @@
-'use strict';
-const assert = require('power-assert');
+const assert = require('power-assert')
 const Router = require('koa-joi-router')
 const Joi = Router.Joi
 
-const { SwaggerAPI } = require('../');
+const { SwaggerAPI } = require('../')
 
 describe('API', function () {
   it('should success with valid data', function () {
-    const generator = new SwaggerAPI();
-
+    const generator = new SwaggerAPI()
     const router = Router()
 
     router.get('/signup', {
@@ -30,100 +28,75 @@ describe('API', function () {
           }
         }
       },
-      handler: async() => {}
+      handler: async () => {}
     })
 
-    generator.addJoiRouter(router);
-
+    generator.addJoiRouter(router)
     const spec = generator.generateSpec({
       info: {
         title: 'Example API',
         version: '1.1'
       },
-      basePath: '/api'
+      basePath: '/'
     })
     assert(['info', 'basePath', 'swagger', 'paths', 'tags'].every(v => v in spec))
-  });
-});
+  })
 
-describe('API', function () {
-  it('should success with empty defaultResponses', function () {
-    const generator = new SwaggerAPI();
-
+  it('should success with empty default response', function () {
+    const generator = new SwaggerAPI()
     const router = Router()
 
-    router.get('/no_200', {
-      meta: {
-        swagger: {
-          summary: 'no 200 doc'
-        }
-      },
+    router.get('/empty-default-response', {
       validate: {
-        type: 'json',
-        body: {
-          hello: Joi.string().valid('world')
-        },
         output: {
-          204: {
+          201: {
             body: {
-              id: Joi.number().integer()
+              ok: Joi.bool()
             }
           }
         }
       },
-      handler: async() => {}
+      handler: async () => {}
     })
 
-    generator.addJoiRouter(router);
-
+    generator.addJoiRouter(router)
     const spec = generator.generateSpec({
       info: {
         title: 'Example API',
         version: '1.1'
       },
-      basePath: '/api'
-    },{defaultResponses: {}})
-    assert(!('200' in spec.paths['/no_200'].get.responses))
-  });
-});
+      basePath: '/'
+    }, { defaultResponses: null })
+    assert(!('200' in spec.paths['/empty-default-response'].get.responses))
+  })
 
-describe('API', function () {
-  it('should success with custom output', function () {
-    const generator = new SwaggerAPI();
-
+  it('should success with output placed outside of validate', function () {
+    const generator = new SwaggerAPI()
     const router = Router()
 
-    router.get('/custom_output', {
-      niconiconi: {
-        204: {
-          body: {
-            id: Joi.number().integer()
+    router.get('/output-outside-validate', {
+      validate: {
+        output: {
+          201: {
+            body: {
+              ok: Joi.bool()
+            }
           }
         }
       },
-      meta: {
-        swagger: {
-          summary: 'custom output doc'
-        }
-      },
-      validate: {
-        type: 'json',
-        body: {
-          hello: Joi.string().valid('world')
-        }
-      },
-      handler: async() => {}
+      handler: async () => {}
     })
 
-    generator.addJoiRouter(router);
-
+    generator.addJoiRouter(router)
     const spec = generator.generateSpec({
       info: {
         title: 'Example API',
         version: '1.1'
       },
-      basePath: '/api'
-    },{outputFunc: route => route.niconiconi})
-    assert('204' in spec.paths['/custom_output'].get.responses)
-  });
-});
+      basePath: '/'
+    })
+    assert(
+      ['200', '201'].every(v => v in spec.paths['/output-outside-validate'].get.responses)
+    )
+  })
+})
