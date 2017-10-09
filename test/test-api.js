@@ -42,6 +42,44 @@ describe('API', function () {
     assert(['info', 'basePath', 'swagger', 'paths', 'tags'].every(v => v in spec))
   })
 
+  it('should consider the router prefix', function () {
+    const generator = new SwaggerAPI()
+    const router = Router()
+    router.prefix('/user')
+
+    router.get('/signup', {
+      meta: {
+        swagger: {
+          summary: 'User Signup'
+        }
+      },
+      validate: {
+        type: 'json',
+        body: {
+          username: Joi.string().alphanum().min(3).max(30).required()
+        },
+        output: {
+          200: {
+            body: {
+              userId: Joi.string().description('Newly created user id')
+            }
+          }
+        }
+      },
+      handler: async () => {}
+    })
+
+    generator.addJoiRouter(router)
+    const spec = generator.generateSpec({
+      info: {
+        title: 'Example API',
+        version: '1.1'
+      },
+      basePath: '/'
+    })
+    assert(['/user/signup'].every( r => r in spec.paths))
+  })
+
   it('should success with empty default response', function () {
     const generator = new SwaggerAPI()
     const router = Router()
