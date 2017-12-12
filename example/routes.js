@@ -17,9 +17,9 @@ router.get('/user/:_id', {
     }
   },
   validate: {
-    path: Joi.object().keys({
+    params: {
       _id: Joi.string().alphanum().max(24).description('User id').required()
-    }),
+    },
     output: {
       '200-299': {
         body: Joi.object({
