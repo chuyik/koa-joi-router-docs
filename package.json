@@ -23,9 +23,9 @@
     "path-to-regexp": "^3.0.0"
   },
   "devDependencies": {
+    "@niche-and-services/koa-joi-router": "^1.0.0",
     "eslint": "5",
     "intelli-espower-loader": "^1.0.1",
-    "koa-joi-router": "^6.0.0",
     "mocha": "^6.2.2",
     "power-assert": "^1.6.1",
     "standard-version": "^7.0.0"
