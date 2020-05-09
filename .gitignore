@@ -26,3 +26,11 @@ node_modules
 
 # Users Environment Variables
 .lock-wscript
+
+.nyc_output/
+coverage/
+*.tgz
+package-lock.json
+yarn.lock
+
+

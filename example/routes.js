@@ -1,5 +1,5 @@
 const { SwaggerAPI } = require('../')
-const Router = require('koa-joi-router')
+const Router = require('koa-joi-router-ng')
 const Joi = Router.Joi
 
 /**

@@ -1,5 +1,12 @@
 language: node_js
 node_js:
-- node
-
-script: "make test-travis"
+- stable
+deploy:
+  provider: npm
+  email: yadickson@gmail.com
+  api_key: "${NPM_TOKEN}"
+  on:
+    tags: true
+env:
+  global:
+    secure: CiwvxkwwF+rkDLlMM1DsU8WFxu27EAwdCL4M7GihZYLiTHXwDPkxWmH14DBUGvAH74foRWfo9SeeAFeGXcBSnb/9Ch5QJPf7KcOZUi7m+luvYx6F/EDbwT4wapUVYic2tK8uGUajsH3TdhWW+oTcDaUuJWKJC7OLN3CskATEfS67W80bpMo6Q9/s+CTRfbdtqZXyQrurvER+gMauo9Z043A5e2ULEMiScXXOprT4UW1mNG6As8CTn8jcSgzprK6QWorJLT2+avXiveDS+WFWHNDA2bJ0sdc83rF+iRzRNwBzCJz47t19riotwfs/cvxSJYa2e/lTc3pve8yXl5crasSDCeg+6WAEwK7VffFCvt7km+vTQJsiYN04D8kVp1RDXnlJCDHDA9ntoHbLU+CfRPgflD033xP+SqYuLnmwyp7pvBglj1RcdILFNQXs8Bcyqnu5Hn7iyJdJoH4ocuK1Vy6hh7GeoibP26oGjD7YBYiUrGBsBtNnJ8caIBtBnWxhS99rr5A8SXr46i36vTDgml9nPPkXcVfdKmraU8EVAECj+IzFD30LmtTrsFi1KCiwCRosSQwQJq080JX2c3SHw76cv+yy0qvd3ZiJKIHo9Quy0TDTiXVUQubYV28f27w2RP4QYv73i+AlMrDEcSnMtIJJk4aVdyPigNE4thtDR5U=

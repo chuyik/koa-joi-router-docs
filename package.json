@@ -1,6 +1,6 @@
 {
-  "name": "koa-joi-router-docs",
-  "version": "1.2.1",
+  "name": "koa-joi-router-ng-docs",
+  "version": "1.2.2",
   "description": "OpenAPI(aka Swagger) API docs generator for koa-joi-router.",
   "main": "index.js",
   "scripts": {
@@ -19,13 +19,13 @@
   "license": "MIT",
   "dependencies": {
     "lodash": "^4.17.15",
-    "o2team-joi-to-swagger": "^3.2.2",
+    "joi-to-swagger-ng": "^3.2.3",
     "path-to-regexp": "^3.0.0"
   },
   "devDependencies": {
     "eslint": "^6.8.0",
     "intelli-espower-loader": "^1.0.1",
-    "koa-joi-router": "^6.0.0",
+    "koa-joi-router-ng": "^6.0.3",
     "mocha": "^7.1.1",
     "power-assert": "^1.6.1",
     "standard-version": "^7.1.0"

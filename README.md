@@ -1,9 +1,22 @@
-# Koa-Joi-Router Docs Generator
+# koa-joi-router-ng-docs
 
-This project is based on [paul42/joi-router-swagger-docs](https://github.com/paul42/joi-router-swagger-docs).
+[![NPM version][npm-image]][npm-url]
+[![build status][travis-image]][travis-url]
+[![npm download][download-image]][download-url]
+
+[npm-image]: https://img.shields.io/npm/v/koa-joi-router-ng-docs.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/koa-joi-router-ng-docs
+[travis-image]: https://img.shields.io/travis/yadickson/koa-joi-router-docs.svg?style=flat-square
+[travis-url]: https://travis-ci.org/yadickson/koa-joi-router-docs
+[download-image]: https://img.shields.io/npm/dm/koa-joi-router-ng-docs.svg?style=flat-square
+[download-url]: https://npmjs.org/package/koa-joi-router-ng-docs
+
+This project is based on [chuyik/koa-joi-router-docs](https://github.com/chuyik/koa-joi-router-docs).
+
+This fork use Joi@17 version
 
 A node module for generating [Swagger 2.0](http://swagger.io/) JSON
-definitions from existing [koa-joi-router](https://github.com/koajs/joi-router)
+definitions from existing [koa-joi-router](https://github.com/yadickson/joi-router)
 routes.
 
 Aiming to be a replacement for
@@ -58,23 +71,10 @@ Options:
 
 ---
 
-# Donation
-
-If you find this project useful, you can buy us a cup of coffee:    
-
-<a href="https://www.paypal.me/chuyik" target="blank">
-<img width="200" src="https://storage.360buyimg.com/mtd/home/donate_paypal_min1495016435786.png" alt="">
-</a><br>     
-
-<img width="650" src="https://storage.360buyimg.com/mtd/home/donate_cn1495017701926.png" alt="">
-
 ## Acknowledgements
 We are grateful to the authors of existing related projects for their ideas and collaboration:
 
 - [@paul42](https://github.com/paul42/joi-router-swagger-docs)
 - [@pebble](https://github.com/pebble/joi-router-swagger-docs)
+- [@chuyik](https://github.com/chuyik/koa-joi-router-docs)
 
-## Contributors
-[![chuyik](https://avatars2.githubusercontent.com/u/6262943?v=3&s=120)](https://github.com/chuyik) |
-:---:|
-[chuyik](https://github.com/chuyik) |
