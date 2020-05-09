@@ -6,7 +6,7 @@
   "scripts": {
     "bump": "standard-version",
     "release": "git push --follow-tags origin master && npm publish --registry=https://registry.npmjs.org/",
-    "test": "mocha -r intelli-espower-loader"
+    "test": "nyc --all --reporter=cobertura --reporter=lcov --reporter=html --reporter=text mocha -r intelli-espower-loader"
   },
   "author": {
     "name": "Edward Chu",
@@ -27,6 +27,7 @@
     "intelli-espower-loader": "^1.0.1",
     "koa-joi-router-ng": "^6.0.3",
     "mocha": "^7.1.1",
+    "nyc": "^15.0.1",
     "power-assert": "^1.6.1",
     "standard-version": "^7.1.0"
   },
