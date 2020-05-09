@@ -1,5 +1,5 @@
 const assert = require('power-assert')
-const Router = require('koa-joi-router')
+const Router = require('koa-joi-router-ng')
 const Joi = Router.Joi
 
 const { SwaggerAPI } = require('../')
@@ -104,7 +104,7 @@ describe('API', function () {
     const generator = new SwaggerAPI()
     const router = Router()
     router.prefix('/api')
- 
+
     router.get('/signup', {
       meta: {
         swagger: {
@@ -115,7 +115,7 @@ describe('API', function () {
       },
       handler: async () => {}
     })
- 
+
     generator.addJoiRouter(router)
     const spec = generator.generateSpec({
       info: {
@@ -131,7 +131,7 @@ describe('API', function () {
     const generator = new SwaggerAPI()
     const router = Router()
     router.prefix('/api')
- 
+
     router.get('/signup', {
       meta: {
         swagger: {
@@ -142,7 +142,7 @@ describe('API', function () {
       },
       handler: async () => {}
     })
- 
+
     generator.addJoiRouter(router, { prefix: '/other-api' })
     const spec = generator.generateSpec({
       info: {
@@ -161,7 +161,7 @@ describe('API', function () {
     const ProfileJoi = Joi.object({
       profileName: Joi.string(),
     })
- 
+
     router.get('/signup', {
       validate: {
         type: 'json',
@@ -176,7 +176,7 @@ describe('API', function () {
       },
       handler: async () => {}
     })
- 
+
     generator.addJoiRouter(router)
     const spec = generator.generateSpec({
       info: {
