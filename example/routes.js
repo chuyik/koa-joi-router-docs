@@ -163,7 +163,7 @@ router.get('/apiDocs', async ctx => {
   </head>
   <body>
     <redoc spec-url='/_api.json' lazy-rendering></redoc>
-    <script src="https://rebilly.github.io/ReDoc/releases/latest/redoc.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/redoc@next/bundles/redoc.standalone.js"></script>
   </body>
   </html>
   `
